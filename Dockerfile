@@ -2,33 +2,34 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . /var/www/html
 
-# Configuración de Nginx para Laravel
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
-# Instalar dependencias
 RUN composer install --no-dev --optimize-autoloader
 
-# Asegurar directorios de Laravel
+# Crear directorios necesarios
 RUN mkdir -p /var/www/html/storage/framework/cache/data \
     /var/www/html/storage/framework/sessions \
     /var/www/html/storage/framework/views \
     /var/www/html/storage/logs \
-    /var/www/html/public/storage
+    /var/www/html/public/storage/portadas_uploads \
+    /var/www/html/public/storage/portadas_uploadsimg
 
-# Copiar físicamente las imágenes a public/storage por si falla el Symlink
-RUN cp -rn /var/www/html/storage/app/public/* /var/www/html/public/storage/ || true
-
-# Crear también el enlace simbólico por respaldo
+# Forzar la recreación del enlace simbólico
+RUN rm -rf /var/www/html/public/storage
 RUN php artisan storage:link --force
 
-# Asignar permisos universales
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public
+# Copiar el contenido de ambas carpetas para garantizar que las imágenes existan en ambos lados
+RUN cp -rn /var/www/html/storage/app/public/* /var/www/html/public/storage/ || true
+RUN cp -rn /var/www/html/storage/app/public/portadas_uploadsimg/* /var/www/html/public/storage/portadas_uploads/ || true
+RUN cp -rn /var/www/html/storage/app/public/portadas_uploads/* /var/www/html/public/storage/portadas_uploadsimg/ || true
 
-# Limpiar cachés
+# Asignar permisos
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/public
+RUN chmod -R 777 /var/www/html/storage /var/www/html/public
+
 RUN php artisan config:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
