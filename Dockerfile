@@ -2,24 +2,26 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . /var/www/html
 
-# Configuración del sitio y reescritura para Nginx / Laravel
+# Copiar la configuración personalizada de Nginx para manejar rutas de Laravel
+COPY conf/nginx/site.conf /etc/nginx/sites-available/default.conf
+
+# Variables de entorno para Nginx/PHP
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
-ENV LARA_UNSPLASH 1
 
 # Instalar dependencias
 RUN composer install --no-dev --optimize-autoloader
 
-# Crear enlace simbólico de storage (para ver las imágenes)
+# Crear el enlace simbólico para imágenes
 RUN php artisan storage:link --force
 
-# Permisos
+# Asignar permisos adecuados
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Limpiar cachés de rutas y configuración
+# Limpieza de cachés de Laravel
 RUN php artisan config:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
