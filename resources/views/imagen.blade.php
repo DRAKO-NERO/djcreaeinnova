@@ -1,14 +1,12 @@
 <?php
 ?>
 <!DOCTYPE html>
-<html lang="es  ">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-
-
     <link rel="icon" href="{{asset('img/djcreaeinnova.jpg')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,58 +25,60 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     </div>
-    <a href="{{url('/')}}" class="btn btn-primary" >Inicio</a>
+      <a href="{{url('/')}}" class="btn btn-primary">Inicio</a>
   </div>
 </nav>
 
-<div class="container">
-    
-
-</div>
 <br>
-<div class="container"  style="background-color: #00000083;border-radius: 10px;box-shadow: 0px 0px 10px #000000;">
+<div class="container p-4" style="background-color: #00000083; border-radius: 10px; box-shadow: 0px 0px 10px #000000;">
     <center>
-        <h3 class="titulo1">DJ CREA E INNOVA</h3>
+        <h3 class="titulo1 text-white">DJ CREA E INNOVA</h3>
         <br>
     </center>
   <div class="container text-center my-3">
     <div class="row mx-auto my-auto justify-content-center">
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content w-100">
       <div class="container-fluid">
         <div class="row">
 
           <div class="col-md-12">
 
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="m-0">{{$imagen->titulo_i}}</h3>
+            <div class="card card-primary card-outline shadow">
+              <div class="card-header bg-light">
+                <h3 class="m-0 text-dark fw-bold">{{$imagen->titulo_i}}</h3>
               </div>
-              <div class="card-body">
-                <table class="table table-bodered border-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Imagen</th>
+              <div class="card-body p-4 text-start">
+                
+                <!-- SISTEMA DE COLUMNAS PARA IMAGEN Y DESCRIPCIÓN -->
+                <div class="row align-items-center">
+                    
+                    <!-- Columna de la Imagen -->
+                    <div class="col-12 col-md-5 col-lg-5 text-center mb-4 mb-md-0">
+                        <h5 class="fw-bold mb-3 text-uppercase">Imagen</h5>
+                        <div class="shadow-sm rounded overflow-hidden mx-auto" style="max-width: 500px;">
+                            <img src="{{asset('storage').'/'.$imagen->imagen_i}}" class="img-fluid rounded w-100" style="max-height: 400px; object-fit: cover;" alt="{{$imagen->titulo_i}}">
+                        </div>
+                    </div>
 
-                      <th>Descripcion</th>
+                    <!-- Columna de la Descripción -->
+                    <div class="col-12 col-md-7 col-lg-7">
+                        <h5 class="fw-bold mb-3 text-uppercase text-center text-md-start">Descripción</h5>
+                        <div class="descripcion-contenido p-2" style="font-size: 1.05rem; line-height: 1.7;">
+                            {!! $imagen->descripcion_i !!}
+                        </div>
+                    </div>
 
-                    </tr>
-                  </thead>
-                  <tbody>
+                </div>
+                <!-- FIN SISTEMA DE COLUMNAS -->
 
-                      <tr>
-                            <td><img src="{{asset('storage').'/'.$imagen->imagen_i}}" class="img-fluid"style=" width:100%; max-width: 450px; height: 300px; object-fit: cover; border-radius: 8px;" alt=""></td>
-                        <td>{!! $imagen->descripcion_i !!}</td>
-                      </tr>
-
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
-          <!-- /.col-md-6 -->
+          <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -89,18 +89,16 @@
   </div>
 </div>
 <br><br>
+<!-- Botones de Redes Sociales con clase estándar text-center -->
+    <div class="text-center my-4">
+        <a href="https://www.facebook.com/profile.php?id=61568396361484" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg btn-facebook animate__animated animate__zoomInUp animate__delay-1s"><i class="bi bi-facebook"></i></a>
+        <a href="https://youtube.com/@djcreaeinnova?si=hmKOT50TGAqDILxV" target="_blank" rel="noopener noreferrer" class="btn btn-danger btn-lg btn-youtube animate__animated animate__zoomInUp animate__delay-2s"><i class="bi bi-youtube"></i></a>
+        <a href="https://www.tiktok.com/@mister.mueble.per?_r=1&_t=ZS-98RzkitaoIS" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-tiktok animate__animated animate__zoomInUp animate__delay-3s"><i class="bi bi-tiktok"></i></a>
+        <a href="https://www.instagram.com/djcreaeinnova?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-instagram animate__animated animate__zoomInUp animate__delay-4s"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/51915061691" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg btn-whatsapp animate__animated animate__zoomInUp animate__delay-5s"><i class="bi bi-whatsapp"></i></a>
+    </div>
 
-
-
-<center>
-        <a href="https://www.facebook.com/profile.php?id=61568396361484" target="_blank" class="btn btn-primary btn-lg btn-facebook animate__animated animate__zoomInUp animate__delay-1s"><i class="bi bi-facebook"></i></a>
-        <a href="https://youtube.com/@djcreaeinnova?si=hmKOT50TGAqDILxV" target="_blank" class="btn btn-danger btn-lg btn-youtube animate__animated animate__zoomInUp animate__delay-2s"><i class="bi bi-youtube"></i></a>
-        <a href="https://www.tiktok.com/@mister.mueble.per?_r=1&_t=ZS-98RzkitaoIS" target="_blank" class="btn btn-lg btn-tiktok animate__animated animate__zoomInUp animate__delay-3s"><i class="bi bi-tiktok"></i></a>
-        <a href="https://www.instagram.com/djcreaeinnova?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn btn-lg btn-instagram animate__animated animate__zoomInUp animate__delay-4s"><i class="bi bi-instagram"></i></a>
-        <a href="https://wa.me/51915061691" target="_blank" class="btn btn-secondary btn-lg btn-whatsapp animate__animated animate__zoomInUp animate__delay-5s"><i class="bi bi-whatsapp"></i></a>
-    </center>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-<script src="{{ asset('js/carrousel.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/carrousel.js') }}"></script>
 </body>
 </html>
