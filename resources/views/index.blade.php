@@ -28,7 +28,7 @@
 
 <div class="container overflow-hidden">
 <div class="container text-center px-2 my-3">
-    <h1 class="titulo1 animate__animated animate__slideInDown">
+    <h1 class="titulo1 animate__animated animate__slideInDown mb-0">
         DJ CREA E INNOVA
     </h1>
     <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
