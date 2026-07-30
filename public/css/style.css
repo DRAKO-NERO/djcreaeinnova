@@ -18,27 +18,26 @@ body {
     src: url('../font/varsity_regular.ttf');
 }
 
-/* --- CLASE TITULO CORREGIDA --- */
+/* --- CLASE TÍTULO OPTIMIZADA (PALABRAS ENTERAS EN MÓVIL) --- */
 .titulo1 {
     font-family: 'varsity_regular', sans-serif;
     color: #FF2400;
-    /* Reducimos el rango de clamp para celulares estrechos */
-    font-size: clamp(1.8rem, 7vw, 4.5rem); 
-    line-height: 1.1;
+    /* Rango fluido para que las palabras quepan completas */
+    font-size: clamp(1.2rem, 6.5vw, 4.5rem); 
+    line-height: 1.15;
     text-shadow: 2px 2px 4px #000000;
     
-    /* Control estricto de texto y desbordamiento */
     width: 100%;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 10px;
+    padding: 0 5px;
     box-sizing: border-box;
     
-    /* Permite saltos de línea limpios */
+    /* Evita partir palabras por la mitad (ej: INNOV-A) */
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
     white-space: normal !important;
-    word-break: break-word;
-    overflow-wrap: break-word;
 }
 
 /* BOTONES REDES SOCIALES */
@@ -146,24 +145,7 @@ body {
 
 .carousel-inner {
     overflow: hidden;
-}
-
-/* MEDIA QUERIES PARA CELULARES */
-@media (max-width: 576px) {
-    .titulo1 {
-        font-size: 1.7rem !important; /* Ajuste directo para celulares muy pequeños */
-        letter-spacing: 0px;
-    }
-}
-
-@media (max-width: 767px) {
-    .carousel-inner .carousel-item > div {
-        display: none;
-    }
-
-    .carousel-inner .carousel-item > div:first-child {
-        display: block;
-    }
+    padding: 10px 0;
 }
 
 .carousel-inner .carousel-item.active,
@@ -172,7 +154,55 @@ body {
     display: flex;
 }
 
-/* PANTALLAS MEDIANAS Y GRANDES */
+/* --- ESTILOS DE CONTROLES DEL CARRUSEL --- */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8% !important;
+    opacity: 0.8;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 15px;
+    background-size: 50%;
+}
+
+/* --- MEDIA QUERIES RESPONSIVE --- */
+
+/* Pantallas pequeñas (Celulares) */
+@media (max-width: 400px) {
+    .titulo1 {
+        font-size: 1.3rem !important;
+        letter-spacing: -0.5px;
+    }
+}
+
+/* Ajustes del carrusel en celulares (< 768px) */
+@media (max-width: 767px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+        width: 85%; /* Deja margen a los costados para las flechas */
+        margin: 0 auto;
+    }
+
+    .carousel-inner .carousel-item.active {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-item img {
+        height: 220px !important;
+        object-fit: cover;
+    }
+}
+
+/* Pantallas medianas y grandes (Tablets y PC) */
 @media (min-width: 768px) {
     .carousel-inner .carousel-item > div {
         flex: 0 0 25%;
