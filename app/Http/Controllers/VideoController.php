@@ -26,7 +26,7 @@ class VideoController extends Controller
     {
         $request->validate([
             'titulo_v' => 'required|max:255',
-            'imagen_v' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagen_v' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'video_url_v' => 'required',
             'descripcion_v' => 'required',
         ]);
@@ -44,7 +44,8 @@ class VideoController extends Controller
         $video->descripcion_v = $request->descripcion_v;
         $video->save();
 
-        return redirect()->route('videos.index')->with('mensaje', 'Video Creado Exitosamente.');
+        // Redirección directa por URL para evitar fallo de ruta nombrada
+        return redirect('/admin/videos')->with('mensaje', 'Video Creado Exitosamente.');
     }
 
     // Muestra un registro en específico
@@ -66,6 +67,7 @@ class VideoController extends Controller
     {
         $request->validate([
             'titulo_v' => 'required|max:255',
+            'imagen_v' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'video_url_v' => 'required',
             'descripcion_v' => 'required',
         ]);
@@ -83,14 +85,15 @@ class VideoController extends Controller
         $video->descripcion_v = $request->descripcion_v;
         $video->save();
 
-        return redirect()->route('videos.index')->with('mensaje', 'Video Editado Exitosamente.');
+        // Redirección directa por URL para evitar fallo de ruta nombrada
+        return redirect('/admin/videos')->with('mensaje', 'Video Editado Exitosamente.');
     }
 
     // Elimina el registro específico
     public function destroy($id)
     {
         Video::destroy($id);
-        return redirect()->route('videos.index')->with('mensaje', 'Video Eliminado Exitosamente.');
+        return redirect('/admin/videos')->with('mensaje', 'Video Eliminado Exitosamente.');
     }
 
     public function cargar_videos()
