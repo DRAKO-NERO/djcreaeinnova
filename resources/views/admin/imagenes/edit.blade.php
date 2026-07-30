@@ -18,8 +18,6 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 
-
-
     </div>
     <!-- /.content-header -->
 
@@ -47,37 +45,38 @@
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
 
-                                <label for="">Portada de la Imagen<span style="color: red"><b>*</b></span></label>
-                                <input type="file" name="imagen_i" id="file" class="form-control" value="{{$imagen->imagen_i}}">
+                                <label for="">Portada de la Imagen</label>
+                                <input type="file" name="imagen_i" id="file" class="form-control">
                                 @error('imagen_i')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
 
                                 <br>
                                 <center><output id="list" style="margin-top: 0px;">
-                                    <img src="{{ asset('storage').'/'.$imagen->imagen_i}}" alt="Portada de la Imagen" width="400px">
+                                    <!-- Validación híbrida: Cloudinary vs Almacenamiento Local -->
+                                    <img src="{{ \Illuminate\Support\Str::startsWith($imagen->imagen_i, 'http') ? $imagen->imagen_i : asset('storage/' . $imagen->imagen_i) }}" alt="Portada de la Imagen" width="400px">
                                 </output></center>
                                 <script>
-                                                function archivo(evt) {
-                                                    var files = evt.target.files; // FileList object
-                                                    // Obtenemos la imagen del campo "file".
-                                                    for (var i = 0, f; f = files[i]; i++) {
-                                                        //Solo admitimos imágenes.
-                                                        if (!f.type.match('image.*')) {
-                                                            continue;
-                                                        }
-                                                        var reader = new FileReader();
-                                                        reader.onload = (function (theFile) {
-                                                            return function (e) {
-                                                                // Insertamos la imagen
-                                                                document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="400px" title="', escape(theFile.name), '"/>'].join('');
-                                                            };
-                                                        })(f);
-                                                        reader.readAsDataURL(f);
-                                                    }
-                                                }
-                                                document.getElementById('file').addEventListener('change', archivo, false);
-                                            </script>
+                                    function archivo(evt) {
+                                        var files = evt.target.files; // FileList object
+                                        // Obtenemos la imagen del campo "file".
+                                        for (var i = 0, f; f = files[i]; i++) {
+                                            // Solo admitimos imágenes.
+                                            if (!f.type.match('image.*')) {
+                                                continue;
+                                            }
+                                            var reader = new FileReader();
+                                            reader.onload = (function (theFile) {
+                                                return function (e) {
+                                                    // Insertamos la imagen
+                                                    document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="400px" title="', escape(theFile.name), '"/>'].join('');
+                                                };
+                                            })(f);
+                                            reader.readAsDataURL(f);
+                                        }
+                                    }
+                                    document.getElementById('file').addEventListener('change', archivo, false);
+                                </script>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -90,8 +89,8 @@
 
                                 <script>
                                 CKEDITOR.replace( 'descripcion_i', {
-                                versionCheck: false
-                        });
+                                    versionCheck: false
+                                });
                                 </script>
                             </div>
                         </div>

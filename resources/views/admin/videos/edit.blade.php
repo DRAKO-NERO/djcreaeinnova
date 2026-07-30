@@ -18,8 +18,6 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 
-
-
     </div>
     <!-- /.content-header -->
 
@@ -48,36 +46,37 @@
                                 @enderror
 
                                 <label for="">Portada del Video<span style="color: red"><b>*</b></span></label>
-                                <input type="file" name="imagen_v" id="file" class="form-control" value="{{$video->imagen_v}}">
+                                <input type="file" name="imagen_v" id="file" class="form-control">
                                 @error('imagen_v')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
 
                                 <br>
                                 <center><output id="list" style="margin-top: 0px;">
-                                    <img src="{{ asset('storage').'/'.$video->imagen_v}}" alt="Portada del Video" width="400px">
+                                    <!-- Soporte híbrido: Cloudinary / Local -->
+                                    <img src="{{ \Illuminate\Support\Str::startsWith($video->imagen_v, 'http') ? $video->imagen_v : asset('storage/' . $video->imagen_v) }}" alt="Portada del Video" width="400px">
                                 </output></center>
                                 <script>
-                                                function archivo(evt) {
-                                                    var files = evt.target.files; // FileList object
-                                                    // Obtenemos la imagen del campo "file".
-                                                    for (var i = 0, f; f = files[i]; i++) {
-                                                        //Solo admitimos imágenes.
-                                                        if (!f.type.match('image.*')) {
-                                                            continue;
-                                                        }
-                                                        var reader = new FileReader();
-                                                        reader.onload = (function (theFile) {
-                                                            return function (e) {
-                                                                // Insertamos la imagen
-                                                                document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="400px" title="', escape(theFile.name), '"/>'].join('');
-                                                            };
-                                                        })(f);
-                                                        reader.readAsDataURL(f);
-                                                    }
-                                                }
-                                                document.getElementById('file').addEventListener('change', archivo, false);
-                                            </script>
+                                    function archivo(evt) {
+                                        var files = evt.target.files; // FileList object
+                                        // Obtenemos la imagen del campo "file".
+                                        for (var i = 0, f; f = files[i]; i++) {
+                                            // Solo admitimos imágenes.
+                                            if (!f.type.match('image.*')) {
+                                                continue;
+                                            }
+                                            var reader = new FileReader();
+                                            reader.onload = (function (theFile) {
+                                                return function (e) {
+                                                    // Insertamos la imagen
+                                                    document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="',e.target.result, '" width="400px" title="', escape(theFile.name), '"/>'].join('');
+                                                };
+                                            })(f);
+                                            reader.readAsDataURL(f);
+                                        }
+                                    }
+                                    document.getElementById('file').addEventListener('change', archivo, false);
+                                </script>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -97,8 +96,8 @@
 
                                 <script>
                                 CKEDITOR.replace( 'descripcion_v', {
-                                versionCheck: false
-                        });
+                                    versionCheck: false
+                                });
                                 </script>
                             </div>
                         </div>
