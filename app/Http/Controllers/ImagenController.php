@@ -25,7 +25,7 @@ class ImagenController extends Controller
     {
         $request->validate([
             'titulo_i' => 'required|max:255',
-            'imagen_i' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagen_i' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'descripcion_i' => 'required',
         ]);
         
@@ -41,7 +41,8 @@ class ImagenController extends Controller
         $imagen->descripcion_i = $request->descripcion_i;
         $imagen->save();
 
-        return redirect()->route('imagenes.index')->with('mensaje', 'Imagen Creada Exitosamente.');
+        // Redirección directa por URL para mayor seguridad en producción
+        return redirect('/admin/imagenes')->with('mensaje', 'Imagen Creada Exitosamente.');
     }
 
     // Muestra un registro en específico
@@ -63,6 +64,7 @@ class ImagenController extends Controller
     {
         $request->validate([
             'titulo_i' => 'required|max:255',
+            'imagen_i' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'descripcion_i' => 'required',
         ]);
         
@@ -78,14 +80,15 @@ class ImagenController extends Controller
         $imagen->descripcion_i = $request->descripcion_i;
         $imagen->save();
 
-        return redirect()->route('imagenes.index')->with('mensaje', 'Imagen Editada Exitosamente.');
+        // Redirección directa por URL para mayor seguridad en producción
+        return redirect('/admin/imagenes')->with('mensaje', 'Imagen Editada Exitosamente.');
     }
 
     // Elimina el registro específico
     public function destroy($id)
     {
         Imagen::destroy($id);
-        return redirect()->route('imagenes.index')->with('mensaje', 'Imagen Eliminada Exitosamente.');
+        return redirect('/admin/imagenes')->with('mensaje', 'Imagen Eliminada Exitosamente.');
     }
 
     public function datos_imagen($id)
