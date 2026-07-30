@@ -34,4 +34,8 @@ RUN php artisan config:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
 
+# Exponer el puerto 80 explícitamente
 EXPOSE 80
+
+# Iniciar los servicios
+CMD ["/start.sh"]
