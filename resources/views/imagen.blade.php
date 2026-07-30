@@ -57,7 +57,7 @@
                     <div class="col-12 col-md-5 col-lg-5 text-center mb-4 mb-md-0">
                         <h5 class="fw-bold mb-3 text-uppercase text-primary">IMAGEN</h5>
                         <div class="shadow-sm rounded overflow-hidden mx-auto" style="max-width: 500px;">
-                            <img src="{{asset('storage').'/'.$imagen->imagen_i}}" class="img-fluid rounded w-100" style="max-height: 420px; object-fit: cover;" alt="{{$imagen->titulo_i}}">
+                            <img src="{{ \Illuminate\Support\Str::startsWith($imagen->imagen_i, 'http') ? $imagen->imagen_i : asset('storage/' . $imagen->imagen_i) }}" alt="Portada de la Imagen" width="400px">
                         </div>
                     </div>
 
