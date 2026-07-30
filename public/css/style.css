@@ -22,31 +22,23 @@ body {
 .titulo1 {
     font-family: 'varsity_regular', sans-serif;
     color: #FF2400;
-    
-    /* Disminuimos el mínimo a 1.2rem para que 'INNOVA' quepa completa en celulares pequeños */
-    font-size: clamp(1.2rem, 6.5vw, 4.5rem); 
-    line-height: 1.15;
+    /* Reducimos el rango de clamp para celulares estrechos */
+    font-size: clamp(1.8rem, 7vw, 4.5rem); 
+    line-height: 1.1;
     text-shadow: 2px 2px 4px #000000;
     
+    /* Control estricto de texto y desbordamiento */
     width: 100%;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 5px;
+    padding: 0 10px;
     box-sizing: border-box;
     
-    /* OBLIGA A MANTENER LAS PALABRAS ENTERAS (Sin romper letras) */
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
+    /* Permite saltos de línea limpios */
     white-space: normal !important;
-}
-
-/* Regla especial para pantallas ultra pequeñas (iPhone SE, Androids chicos) */
-@media (max-width: 400px) {
-    .titulo1 {
-        font-size: 1.3rem !important;
-        letter-spacing: -0.5px; /* Junta un poco las letras para ganar espacio */
-    }
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* BOTONES REDES SOCIALES */
