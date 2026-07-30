@@ -69,7 +69,7 @@
                     <div class="col-md-3 px-3">
                         <div class="card bg-transparent border-0">
                             <div class="card-img text-center">
-                                <a href="{{url('/video/'.$video->id)}}"><img src="{{asset('storage').'/'.$video->imagen_v}}" class="img-fluid w-100"alt="" style="height: 250px;object-fit: cover;border-radius: 8px;"></a>
+                                <a href="{{url('/video/'.$video->id)}}"><img src="{{ $video->imagen_v }}" alt="{{ $video->titulo_v }}" class="img-fluid w-100" style="height: 250px;object-fit: cover;border-radius: 8px;"></a>
                             </div>
                             <h6 class="text-center text-white mt3">{{$video->titulo_v}}</h6>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="card bg-transparent border-0">
                             <div class="card-img text-center">
                                 <!-- Mostramos la imagen usando el campo imagen_i -->
-                                <a href="{{url('/imagen/'.$imagen->id)}}"><img src="{{ asset('storage/' . $imagen->imagen_i) }}" class="img-fluid w-100" alt="" style="height: 250px;object-fit: cover;border-radius: 8px;"></a>
+                                <a href="{{url('/imagen/'.$imagen->id)}}"><img src="{{ $imagen->imagen_i }}" alt="{{ $imagen->titulo_i }}" class="img-fluid w-100" style="height: 250px;object-fit: cover;border-radius: 8px;"></a>
                             </div>
                             <!-- Mostramos el título usando el campo titulo_i -->
                             <h6 class="text-center text-white mt-3">{{ $imagen->titulo_i }}</h6>
