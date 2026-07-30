@@ -1,150 +1,175 @@
+/* Previene cualquier desborde lateral global */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-            background: url("https://cdn.pixabay.com/photo/2020/10/18/09/16/bedroom-5664221_1280.jpg");
-            background-repeat: no-repeat;
-            background-size: 100vw 100vh;
-            z-index: -3;
-            background-attachment: fixed;
-        }
-        @font-face {
-            font-family: 'varsity_regular';
-            src: url('../font/varsity_regular.ttf');
-        }
-        .titulo1{
-            font-family: 'varsity_regular';
-            color: #FF2400;
-            font-size: 100px;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        .btn-facebook,
-        .btn-facebook:link,
-        .btn-facebook:visited,
-        .btn-facebook:focus,
-        .btn-facebook:active,
-        .btn-facebook:focus-visible{
-            background-color: #0a58ca;
-            color: white;
-            border-radius: 50%;
-        }.btn-facebook:hover {
-            background-color: white;
-            color: #0a58ca;
-        }
-        .btn-youtube,
-        .btn-youtube:link,
-        .btn-youtube:visited,
-        .btn-youtube:focus,
-        .btn-youtube:active,
-        .btn-youtube:focus-visible{
-            background-color: #ff0000;
-            color: white;
-            border-radius: 50%;
-        }.btn-youtube:hover {
-            background-color: white;
-            color: #ff0000;
-        }
-        .btn-tiktok,
-        .btn-tiktok:link,
-        .btn-tiktok:visited,
-        .btn-tiktok:focus,
-        .btn-tiktok:active,
-        .btn-tiktok:focus-visible{
-            background-color: #000000;
-            color: white;
-            border-radius: 50%;
-            border: 1px solid transparent;
-        }.btn-tiktok:hover {
-            background-color: white;
-            color: #000000;
-            border: 1px solid #000000;
-        }
-        .btn-instagram,
-        .btn-instagram:link,
-        .btn-instagram:visited,
-        .btn-instagram:focus,
-        .btn-instagram:active,
-        .btn-instagram:focus-visible{
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            border-radius: 50%;
-            border: 1px solid transparent;
-        }.btn-instagram:hover {
-            background: white;  
-            color: #dc2743;
-            border: 1px solid #dc2743;
-        }
-        .btn-whatsapp,
-        .btn-whatsapp:link,
-        .btn-whatsapp:visited,
-        .btn-whatsapp:focus,
-        .btn-whatsapp:active,
-        .btn-whatsapp:focus-visible{
-            background-color: #078326;
-            color: white;
-            border-radius: 50%;
-            border: 1px solid transparent;
-        }.btn-whatsapp:hover {
-            background-color: white;
-            color: #078326;
-            border: 1px solid #078326;
-        }
+    background: url("https://cdn.pixabay.com/photo/2020/10/18/09/16/bedroom-5664221_1280.jpg");
+    background-repeat: no-repeat;
+    /* CORREGIDO: 'cover' adapta la imagen sin estirar ni desbordar la pantalla */
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -3;
+}
 
-        .slider {
-        width: 80%;
-        margin: 100px auto;
-    }
+@font-face {
+    font-family: 'varsity_regular';
+    src: url('../font/varsity_regular.ttf');
+}
 
-    .slick-slide {
-      margin: 0px 20px;
-    }
+.titulo1 {
+    font-family: 'varsity_regular';
+    color: #FF2400;
+    /* CORREGIDO: Usamos clamp para que el tamaño sea responsive (min: 40px, max: 90px) */
+    font-size: clamp(2.5rem, 8vw, 5.5rem); 
+    text-shadow: 2px 2px 4px #000000;
+    word-wrap: break-word; /* Si la palabra es larga, no romperá la pantalla */
+}
 
-    .slick-slide img {
-      width: 100%;
-    }
+/* BOTONES REDES SOCIALES */
+.btn-facebook,
+.btn-facebook:link,
+.btn-facebook:visited,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook:focus-visible {
+    background-color: #0a58ca;
+    color: white;
+    border-radius: 50%;
+}
+.btn-facebook:hover {
+    background-color: white;
+    color: #0a58ca;
+}
 
-    .slick-prev:before,
-    .slick-next:before {
-      color: white;
-    }
+.btn-youtube,
+.btn-youtube:link,
+.btn-youtube:visited,
+.btn-youtube:focus,
+.btn-youtube:active,
+.btn-youtube:focus-visible {
+    background-color: #ff0000;
+    color: white;
+    border-radius: 50%;
+}
+.btn-youtube:hover {
+    background-color: white;
+    color: #ff0000;
+}
 
-.carousel-inner{
+.btn-tiktok,
+.btn-tiktok:link,
+.btn-tiktok:visited,
+.btn-tiktok:focus,
+.btn-tiktok:active,
+.btn-tiktok:focus-visible {
+    background-color: #000000;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+.btn-tiktok:hover {
+    background-color: white;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.btn-instagram,
+.btn-instagram:link,
+.btn-instagram:visited,
+.btn-instagram:focus,
+.btn-instagram:active,
+.btn-instagram:focus-visible {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+.btn-instagram:hover {
+    background: white;  
+    color: #dc2743;
+    border: 1px solid #dc2743;
+}
+
+.btn-whatsapp,
+.btn-whatsapp:link,
+.btn-whatsapp:visited,
+.btn-whatsapp:focus,
+.btn-whatsapp:active,
+.btn-whatsapp:focus-visible {
+    background-color: #078326;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+.btn-whatsapp:hover {
+    background-color: white;
+    color: #078326;
+    border: 1px solid #078326;
+}
+
+/* SLIDER / CARRUSEL */
+.slider {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.slick-slide {
+    margin: 0px 10px;
+}
+
+.slick-slide img {
+    width: 100%;
+    height: auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: white;
+}
+
+.carousel-inner {
     overflow: hidden;
 }
 
+/* MEDIA QUERIES PARA CELULARES */
 @media (max-width: 767px) {
-        .carousel-inner .carousel-item > div {
-            display: none;
-        }
-
-        .carousel-inner .carousel-item > div:first-child {
-            display: block;
-        }
+    .carousel-inner .carousel-item > div {
+        display: none;
     }
 
-    .carousel-inner .carousel-item.active,
-    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* PANTALLAS MEDIANAS Y GRANDES */
+@media (min-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(25%);
+    }
+
+    .carousel-inner .carousel-item-start.active,
     .carousel-inner .carousel-item-prev {
-        display: flex;
+        transform: translateX(-25%);
     }
 
-
-    /* medium and up screens */
-    @media (min-width: 768px) {
-
-        .carousel-inner .carosel-item>div {
-            flex:0 0 25%;
-            max-width: 25%;
-        }
-        .carousel-inner .carousel-item-end.active,
-        .carousel-inner .carousel-item-next {
-            transform: translateX(25%);
-        }
-
-        .carousel-inner .carousel-item-start.active,
-        .carousel-inner .carousel-item-prev {
-            transform: translateX(-25%);
-        }
-
-        .carousel-inner .carousel-item-end,
-        .carousel-inner .carousel-item-start {
-            transform: translateX(0);
-        }
+    .carousel-inner .carousel-item-end,
+    .carousel-inner .carousel-item-start {
+        transform: translateX(0);
     }
+}
