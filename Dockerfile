@@ -7,7 +7,7 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Crear directorios necesarios
 RUN mkdir -p /var/www/html/storage/framework/cache/data \
