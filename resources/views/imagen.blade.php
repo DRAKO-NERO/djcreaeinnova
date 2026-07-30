@@ -24,7 +24,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-    <a href="{{url('/')}}" class="btn btn-primary">Inicio</a>
   </div>
 </nav>
 
