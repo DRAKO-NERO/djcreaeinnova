@@ -52,8 +52,10 @@
 <br>
 
 <!-- Título principal -->
-<div class="container text-center overflow-hidden">
-    <h1 class="titulo1 animate__animated animate__slideInDown mb-0">DJ CREA E INNOVA</h1>
+<div class="container text-center px-3 my-3">
+    <h1 class="titulo1 animate__animated animate__slideInDown mb-0 text-break">
+        DJ CREA E INNOVA
+    </h1>
 </div>
 
 <br>

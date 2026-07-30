@@ -7,7 +7,6 @@ html, body {
 body {
     background: url("https://cdn.pixabay.com/photo/2020/10/18/09/16/bedroom-5664221_1280.jpg");
     background-repeat: no-repeat;
-    /* CORREGIDO: 'cover' adapta la imagen sin estirar ni desbordar la pantalla */
     background-size: cover; 
     background-position: center;
     background-attachment: fixed;
@@ -19,13 +18,27 @@ body {
     src: url('../font/varsity_regular.ttf');
 }
 
+/* --- CLASE TITULO CORREGIDA --- */
 .titulo1 {
-    font-family: 'varsity_regular';
+    font-family: 'varsity_regular', sans-serif;
     color: #FF2400;
-    /* CORREGIDO: Usamos clamp para que el tamaño sea responsive (min: 40px, max: 90px) */
-    font-size: clamp(2.5rem, 8vw, 5.5rem); 
+    /* Reducimos el rango de clamp para celulares estrechos */
+    font-size: clamp(1.8rem, 7vw, 4.5rem); 
+    line-height: 1.1;
     text-shadow: 2px 2px 4px #000000;
-    word-wrap: break-word; /* Si la palabra es larga, no romperá la pantalla */
+    
+    /* Control estricto de texto y desbordamiento */
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+    
+    /* Permite saltos de línea limpios */
+    white-space: normal !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* BOTONES REDES SOCIALES */
@@ -136,6 +149,13 @@ body {
 }
 
 /* MEDIA QUERIES PARA CELULARES */
+@media (max-width: 576px) {
+    .titulo1 {
+        font-size: 1.7rem !important; /* Ajuste directo para celulares muy pequeños */
+        letter-spacing: 0px;
+    }
+}
+
 @media (max-width: 767px) {
     .carousel-inner .carousel-item > div {
         display: none;
