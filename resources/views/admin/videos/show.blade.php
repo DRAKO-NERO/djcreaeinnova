@@ -47,7 +47,7 @@
                       </tr>
                       <tr>
                         <th>Portada</th>
-                        <td><img src="{{asset('storage').'/'.$video->imagen_v}}" width="200" alt=""></td>
+                        <td><img src="{{ $video->imagen_v }}" width="100" class="img-thumbnail" alt="{{ $video->titulo_v }}"></td>
                       </tr>
                       <tr>
                         <th>URL del Video</th>

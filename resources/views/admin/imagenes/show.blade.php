@@ -47,7 +47,7 @@
                       </tr>
                       <tr>
                         <th>Portada</th>
-                        <td><img src="{{asset('storage').'/'.$imagen->imagen_i}}" width="200" alt=""></td>
+                        <td><img src="{{ $imagen->imagen_i }}" width="100" class="img-thumbnail" alt="{{ $imagen->titulo_i }}"></td>
                     </tbody>
                   </table>
                 </div>

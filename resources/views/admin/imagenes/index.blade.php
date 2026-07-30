@@ -15,10 +15,6 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-
-
-
-      
     </div>
     <!-- /.content-header -->
 
@@ -41,10 +37,9 @@
                       )
                   </script>
                 @endif
-                  </div>
               </div>
               <div class="card-body">
-                <table class="table table-bodered border-hover table-striped">
+                <table class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
                       <th>Nro</th>
@@ -57,33 +52,37 @@
                   <tbody>
                     <?php $contador = 0; ?>
                     @foreach ($imagenes as $imagen)
-                      <tr><td><?php echo $contador = $contador +1; ?></td>
-                        <td>{{ $imagen->id }}</td>
+                      <tr>
+                        <td><?php echo $contador = $contador +1; ?></td>
                         <td>{{ $imagen->titulo_i }}</td>
                         <td>{!! $imagen->descripcion_i !!}</td>
                         <td>
-                          <img src="{{asset('storage').'/'.$imagen->imagen_i}}" width="100" alt="">
+                          <!-- CAMBIO AQUÍ: Se usa la URL directa guardada de Cloudinary -->
+                          <img src="{{ $imagen->imagen_i }}" width="100" class="img-thumbnail" alt="{{ $imagen->titulo_i }}">
                         </td>
                         <td>
                           <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="{{ route('imagenes.show', $imagen->id) }}" class="btn btn-info btn-sm">Mostrar</a>
-                          <a href="{{ route('imagenes.edit', $imagen->id) }}" class="btn btn-success btn-sm">Editar</a>
-                          <form action="{{ url('admin/imagenes', $imagen->id) }}" method="POST">
-                              @csrf
-                              {{ method_field('DELETE') }}
-                              <input type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta imagen?')" class="btn btn-danger btn-sm" value="Borrar">
-                          </form>
+                            <a href="{{ route('imagenes.show', $imagen->id) }}" class="btn btn-info btn-sm">Mostrar</a>
+                            <a href="{{ route('imagenes.edit', $imagen->id) }}" class="btn btn-success btn-sm">Editar</a>
+                            <form action="{{ url('admin/imagenes', $imagen->id) }}" method="POST">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <input type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta imagen?')" class="btn btn-danger btn-sm" value="Borrar">
+                            </form>
+                          </div>
+                        </td>
                       </tr>
                     @endforeach
+                  </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <!-- /.col-md-6 -->
+          <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 
-  @endsection
+@endsection

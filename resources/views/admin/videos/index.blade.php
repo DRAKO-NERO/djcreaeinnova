@@ -15,10 +15,6 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-
-
-
-      
     </div>
     <!-- /.content-header -->
 
@@ -41,10 +37,9 @@
                       )
                   </script>
                 @endif
-                  </div>
               </div>
               <div class="card-body">
-                <table class="table table-bodered border-hover table-striped">
+                <table class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
                       <th>Nro</th>
@@ -63,18 +58,20 @@
                         <td>{{ $video->titulo_v }}</td>
                         <td>{!! $video->descripcion_v !!}</td>
                         <td>
-                          <img src="{{asset('storage').'/'.$video->imagen_v}}" width="100" alt="">
+                          <!-- CAMBIO AQUÍ: Se imprime la URL directa de Cloudinary -->
+                          <img src="{{ $video->imagen_v }}" width="100" class="img-thumbnail" alt="{{ $video->titulo_v }}">
                         </td>
                         <td><a href="https://www.youtube.com/shorts/{{ $video->video_url_v }}" target="_blank">Ver Video</a></td>
                         <td>
                           <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="{{ route('videos.show', $video->id) }}" class="btn btn-info btn-sm">Mostrar</a>
-                          <a href="{{ route('videos.edit', $video->id) }}" class="btn btn-success btn-sm">Editar</a>
-                          <form action="{{ url('admin/videos', $video->id) }}" method="POST">
-                              @csrf
-                              {{ method_field('DELETE') }}
-                              <input type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este video?')" class="btn btn-danger btn-sm" value="Borrar">
-                          </form>
+                            <a href="{{ route('videos.show', $video->id) }}" class="btn btn-info btn-sm">Mostrar</a>
+                            <a href="{{ route('videos.edit', $video->id) }}" class="btn btn-success btn-sm">Editar</a>
+                            <form action="{{ url('admin/videos', $video->id) }}" method="POST">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <input type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este video?')" class="btn btn-danger btn-sm" value="Borrar">
+                            </form>
+                          </div>
                         </td>
                       </tr>
                     @endforeach
@@ -83,12 +80,10 @@
               </div>
             </div>
           </div>
-          </div>
-          <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 
-  @endsection
+@endsection
