@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-        <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5VBHQ6G4');</script>
-<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <link rel="icon" href="{{asset('img/djcreaeinnova.jpg')}}">
+    <link rel="icon" href="<?php echo e(asset('img/djcreaeinnova.jpg')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>DJcreaeinnova - Muebles Personalizados</title>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VBHQ6G4"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <div style="width: 60px;">
-      <a href="{{url('/')}}"><img src="{{asset('img/djcreaeinnova.jpg')}}" alt="Logo" width="40px"></a>
+      <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('img/djcreaeinnova.jpg')); ?>" alt="Logo" width="40px"></a>
     </div>
-    <a class="navbar-brand" href="{{url('/')}}">DJCREAEINNOVA</a>
+    <a class="navbar-brand" href="<?php echo e(url('/')); ?>">DJCREAEINNOVA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,20 +50,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="row mx-auto my-auto justify-content-center">
         <div id="recipeCarousel1" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
-              @foreach($videos as $video)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+              <?php $__currentLoopData = $videos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $video): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="carousel-item <?php echo e($loop->first ? 'active' : ''); ?>">
                     <div class="col-12 col-md-3 px-3 mx-auto">
                         <div class="card bg-transparent border-0">
                             <div class="card-img text-center">
-                                <a href="{{url('/video/'.$video->id)}}">
-                                    <img src="{{ $video->imagen_v }}" alt="{{ $video->titulo_v }}" class="img-fluid w-100" style="height: 250px; object-fit: cover; border-radius: 8px;">
+                                <a href="<?php echo e(url('/video/'.$video->id)); ?>">
+                                    <img src="<?php echo e($video->imagen_v); ?>" alt="<?php echo e($video->titulo_v); ?>" class="img-fluid w-100" style="height: 250px; object-fit: cover; border-radius: 8px;">
                                 </a>
                             </div>
-                            <h6 class="text-center text-white mt-2">{{ $video->titulo_v }}</h6>
+                            <h6 class="text-center text-white mt-2"><?php echo e($video->titulo_v); ?></h6>
                         </div>
                     </div>
                 </div>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
             <!-- Controles Videos -->
@@ -97,20 +87,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="row mx-auto my-auto justify-content-center">
         <div id="recipeCarousel2" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
-              @foreach($imagenes as $imagen)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+              <?php $__currentLoopData = $imagenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $imagen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="carousel-item <?php echo e($loop->first ? 'active' : ''); ?>">
                     <div class="col-12 col-md-3 px-3 mx-auto">
                         <div class="card bg-transparent border-0">
                             <div class="card-img text-center">
-                                <a href="{{url('/imagen/'.$imagen->id)}}">
-                                    <img src="{{ $imagen->imagen_i }}" alt="{{ $imagen->titulo_i }}" class="img-fluid w-100" style="height: 250px; object-fit: cover; border-radius: 8px;">
+                                <a href="<?php echo e(url('/imagen/'.$imagen->id)); ?>">
+                                    <img src="<?php echo e($imagen->imagen_i); ?>" alt="<?php echo e($imagen->titulo_i); ?>" class="img-fluid w-100" style="height: 250px; object-fit: cover; border-radius: 8px;">
                                 </a>
                             </div>
-                            <h6 class="text-center text-white mt-2">{{ $imagen->titulo_i }}</h6>
+                            <h6 class="text-center text-white mt-2"><?php echo e($imagen->titulo_i); ?></h6>
                         </div>
                     </div>
                 </div>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
             <!-- Controles Imágenes (Corregido ícono de prev) -->
@@ -128,6 +118,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <br><br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="{{ asset('js/carrousel.js') }}"></script>
+<script src="<?php echo e(asset('js/carrousel.js')); ?>"></script>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\www.djcreaeinnova.com\resources\views/index.blade.php ENDPATH**/ ?>
